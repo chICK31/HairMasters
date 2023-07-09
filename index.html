@@ -379,28 +379,31 @@ navigateToLink();
     });
 
     function startImageCycle() {
-      images[currentIndex].classList.add('active');
-      scrollInterval = setInterval(cycleImages, 2000);
-    }
+    images[currentIndex].classList.add('active');
+    scrollInterval = setInterval(cycleImages, 2000);
+  }
 
-    function stopImageCycle() {
-      images[currentIndex].classList.remove('active');
-      clearInterval(scrollInterval);
-    }
+  function stopImageCycle() {
+    images[currentIndex].classList.remove('active');
+    clearInterval(scrollInterval);
+  }
 
-    function cycleImages() {
-      images[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % totalImages;
-      images[currentIndex].classList.add('active');
-      const containerWidth = bottomScroll.offsetWidth;
-      const imageWidth = images[currentIndex].offsetWidth;
-      const imagesPerContainer = Math.floor(containerWidth / imageWidth);
-      const scrollPosition = currentIndex * imageWidth * imagesPerContainer;
-      bottomScroll.scrollLeft = scrollPosition;
-    }
+  function cycleImages() {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % totalImages;
+    images[currentIndex].classList.add('active');
+    const containerWidth = bottomScroll.offsetWidth;
+    const imageWidth = images[currentIndex].offsetWidth;
+    const imagesPerContainer = Math.floor(containerWidth / imageWidth);
+    const scrollPosition = currentIndex * imageWidth * imagesPerContainer;
+    bottomScroll.scrollLeft = scrollPosition;
+  }
 
-    startImageCycle();
-    updateHairMastersSelection();
-  </script>
+  startImageCycle();
+
+  // Add event listener to trigger image scrolling
+  bottomScroll.addEventListener('mouseover', stopImageCycle);
+  bottomScroll.addEventListener('mouseout', startImageCycle);
+</script>
 </body>
 </html>
