@@ -10,7 +10,7 @@
     }
 
     body {
-      height: 100%;
+      height: 100vh;
       margin: 0;
       background: linear-gradient(to bottom, blue, red, white);
     }
@@ -29,13 +29,12 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-       min-height: 100%; /* Set a minimum height to ensure vertical scrolling */
     }
 
-    .grid {
+   .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 20px;
+      grid-template-columns: 100%;
+      grid-gap: 10px;
       width: 100%;
     }
 
@@ -45,10 +44,7 @@
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       overflow-y: scroll;
-      height: auto; /* Allow grid items to expand vertically */
-    }
-    .grid-item h2 {
-      margin-top: 0; /* Remove top margin for consistency */
+      height: auto;
     }
 
     select {
@@ -112,12 +108,10 @@
       padding: 10px 0;
       margin-top: 20px;
       overflow: hidden;
-      width: 100%; /* Make the images occupy the full width of the container */
-
     }
 
     .bottom-scroll img {
-      width: 40%;
+      width: 15%;
       margin-right: 2%;
       transition: transform 0.1s;
     }
@@ -132,7 +126,6 @@
   </style>
 </head>
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <body>
   <h1>Hair Masters Hub</h1>
 
