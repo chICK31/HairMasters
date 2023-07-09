@@ -142,83 +142,78 @@
         </ul>
       </div>
       <div class="grid-item middle-column">
-  <h2>Select Hair Masters:</h2>
-  <select id="dropdown">
-    <option value="hairmasters1">Hair Masters Springfield</option>
-    <option value="hairmasters2">Hair Masters Hillside</option>
-    <option value="hairmasters3">Hair Masters McPherson</option>
-    <option value="hairmasters4">Hair Masters Delmar</option>
-    <option value="hairmasters5">Hair Masters Shiloh</option>
-  </select>
-
-  <!-- Add a new heading -->
-  <h3>Your Selected Hair Masters Booking Link:</h3>
-
-  <!-- Add target="_blank" to open link in a new tab -->
-<a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Your Selected Hair Masters Booking Link</a>
-
-        <script>
-const hairMasters = {
-  hairmasters1: {
-    name: "Hair Masters Springfield",
-    url: "https://hairmasters1.mysalononline.com/Booking/?sid=0&guid=b8fc744f-78f2-4ebc-a63e-4e16c5e85fbb"
-  },
-  hairmasters2: {
-    name: "Hair Masters Hillside",
-    url: "https://hairmasters2.mysalononline.com/Booking/?sid=0&guid=1c566554-caec-4178-87ee-951a94c81608"
-  },
-  hairmasters3: {
-    name: "Hair Masters McPherson",
-    url: "https://hairmasters3.mysalononline.com/Booking/?sid=0&guid=10220c47-f30e-4073-b317-c5c398498326"
-  },
-  hairmasters4: {
-    name: "Hair Masters Delmar",
-    url: "https://hairmasters4.mysalononline.com/Booking/?sid=0&guid=b4d419c8-d07e-4b5f-b51b-d9b21a8f5772"
-  },
-  hairmasters5: {
-    name: "Hair Masters Shiloh",
-    url: "https://hairmasters5.mysalononline.com/Booking/?sid=0&guid=13988f04-2ad5-480f-ad7b-d271d38eb598"
-  }
-};
-
-const dropdownElement = document.getElementById('dropdown');
-const dropdownLinkElement = document.getElementById('dropdownLink');
-
-function updateBookingLink() {
-  const selectedHairMasters = dropdownElement.value;
-  const hairMastersData = hairMasters[selectedHairMasters];
-
-  if (hairMastersData) {
-    const bookingLink = hairMastersData.url;
-    const bookingName = hairMastersData.name;
-    dropdownLinkElement.href = bookingLink;
-    dropdownLinkElement.textContent = bookingName;
-  }
-}
-
-dropdownElement.addEventListener('change', updateBookingLink);
-updateBookingLink(); // Set initial booking link
-  </script>
+        <h2>Select Hair Masters:</h2>
+        <select id="dropdown">
+          <option value="hairmasters1">Hair Masters Springfield</option>
+          <option value="hairmasters2">Hair Masters Hillside</option>
+          <option value="hairmasters3">Hair Masters McPherson</option>
+          <option value="hairmasters4">Hair Masters Delmar</option>
+          <option value="hairmasters5">Hair Masters Shiloh</option>
+        </select>
+        <h3>Your Selected Hair Masters Booking Link:</h3>
+        <a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Your Selected Hair Masters Booking Link</a>
       </div>
       <div class="grid-item" id="right-column">
         <div id="map" style="width: 100%; height: 200px;"></div>
         <div id="directions"></div>
       </div>
     </div>
-   <div class="scrollable-section">
-  <div class="bottom-scroll">
-    <img src="images/HairMasters.jpg" alt="Image 1">
-    <img src="images/HairMasters2.jpg" alt="Image 2">
-    <img src="images/HairMasters3.jpg" alt="Image 3">
-    <img src="images/HairMasters4.jpg" alt="Image 4">
-    <img src="images/HairMasters5.jpg" alt="Image 5">
-    <img src="images/HairMasters6.jpg" alt="Image 6">
+    <div class="scrollable-section">
+      <div class="bottom-scroll">
+        <img src="images/HairMasters.jpg" alt="Image 1">
+        <img src="images/HairMasters2.jpg" alt="Image 2">
+        <img src="images/HairMasters3.jpg" alt="Image 3">
+        <img src="images/HairMasters4.jpg" alt="Image 4">
+        <img src="images/HairMasters5.jpg" alt="Image 5">
+        <img src="images/HairMasters6.jpg" alt="Image 6">
+      </div>
+    </div>
   </div>
-</div>
+
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://unpkg.com/openrouteservice-js@2.3.2"></script>
   <script>
+    const hairMasters = {
+      hairmasters1: {
+        name: "Hair Masters Springfield",
+        url: "https://hairmasters1.mysalononline.com/Booking/?sid=0&guid=b8fc744f-78f2-4ebc-a63e-4e16c5e85fbb"
+      },
+      hairmasters2: {
+        name: "Hair Masters Hillside",
+        url: "https://hairmasters2.mysalononline.com/Booking/?sid=0&guid=1c566554-caec-4178-87ee-951a94c81608"
+      },
+      hairmasters3: {
+        name: "Hair Masters McPherson",
+        url: "https://hairmasters3.mysalononline.com/Booking/?sid=0&guid=10220c47-f30e-4073-b317-c5c398498326"
+      },
+      hairmasters4: {
+        name: "Hair Masters Delmar",
+        url: "https://hairmasters4.mysalononline.com/Booking/?sid=0&guid=b4d419c8-d07e-4b5f-b51b-d9b21a8f5772"
+      },
+      hairmasters5: {
+        name: "Hair MastersShiloh",
+        url: "https://hairmasters5.mysalononline.com/Booking/?sid=0&guid=13988f04-2ad5-480f-ad7b-d271d38eb598"
+      }
+    };
+
     const dropdownElement = document.getElementById('dropdown');
+    const dropdownLinkElement = document.getElementById('dropdownLink');
+
+    function updateBookingLink() {
+      const selectedHairMasters = dropdownElement.value;
+      const hairMastersData = hairMasters[selectedHairMasters];
+
+      if (hairMastersData) {
+        const bookingLink = hairMastersData.url;
+        const bookingName = hairMastersData.name;
+        dropdownLinkElement.href = bookingLink;
+        dropdownLinkElement.textContent = bookingName;
+      }
+    }
+
+    dropdownElement.addEventListener('change', updateBookingLink);
+    updateBookingLink();
+
     const leftColumn = document.getElementById('left-column');
     const rightColumn = document.getElementById('right-column');
     const bottomScroll = document.querySelector('.bottom-scroll');
@@ -227,44 +222,48 @@ updateBookingLink(); // Set initial booking link
     let currentIndex = 0;
     let scrollInterval;
 
-    const hairMasters = {
-      hairmasters1: {
-        address: '3600 Springfield Avenue, Laredo, Texas 78040, United States',
-        coordinates: [27.530373, -99.483599], // Latitude and longitude of Hair Masters 1
-      },
-      hairmasters2: {
-        address: '302 West Hillside Road, Laredo, Texas 78041, United States',
-        coordinates: [27.510321, -99.503007], // Latitude and longitude of Hair Masters 2
-      },
-      hairmasters3: {
-        address: '5702 Mcpherson Road, Laredo, Texas 78041, United States',
-        coordinates: [27.543576, -99.480051], // Latitude and longitude of Hair Masters 3
-      },
-      hairmasters4: {
-        address: '101 West Del Mar Boulevard, Laredo, Texas 78041, United States',
-        coordinates: [27.506752, -99.487491], // Latitude and longitude of Hair Masters 4
-      },
-      hairmasters5: {
-        address: '401 Shiloh Drive, Laredo, Texas 78045, United States',
-        coordinates: [27.558532, -99.502714], // Latitude and longitude of Hair Masters 5
-      },
-    };
-
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // Radius of the earth in km
-      const dLat = deg2rad(lat2 - lat1); // deg2rad below
-      const dLon = deg2rad(lon2 - lon1);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const d = R * c; // Distance in km
-      return d;
+    function startImageCycle() {
+      images[currentIndex].classList.add('active');
+      scrollInterval = setInterval(cycleImages, 2000);
     }
 
-    function deg2rad(deg) {
-      return deg * (Math.PI / 180);
+    function stopImageCycle() {
+      images[currentIndex].classList.remove('active');
+      clearInterval(scrollInterval);
     }
+
+    function cycleImages() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % totalImages;
+      images[currentIndex].classList.add('active');
+      const containerWidth = bottomScroll.offsetWidth;
+      const imageWidth = images[currentIndex].offsetWidth;
+      const imagesPerContainer = Math.floor(containerWidth / imageWidth);
+      const scrollPosition = currentIndex * imageWidth * imagesPerContainer;
+      bottomScroll.scrollLeft = scrollPosition;
+    }
+
+    startImageCycle();
+
+    bottomScroll.addEventListener('mouseover', stopImageCycle);
+    bottomScroll.addEventListener('mouseout', startImageCycle);
+
+    const hairMastersCoordinates = hairMasters[dropdown.value].coordinates;
+
+    fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248a6854fb3568e42558899aec3fad25e97&start=${longitude},${latitude}&end=${hairMastersCoordinates[1]},${hairMastersCoordinates[0]}`)
+      .then(response => response.json())
+      .then(data => {
+        const coordinates = data.features[0].geometry.coordinates;
+        const polyline = L.polyline(coordinates.map(coord => [coord[1], coord[0]]), {color: 'blue'}).addTo(map);
+        map.fitBounds(polyline.getBounds());
+
+        const directionsElement = document.getElementById('directions');
+        directionsElement.innerHTML = '<p><strong>Directions:</strong></p>';
+        data.features[0].properties.segments[0].steps.forEach(step => {
+          directionsElement.innerHTML += `<p>${step.instruction}</p>`;
+        });
+      })
+      .catch(error => console.error('Error:', error));
 
     function getClosestHairMasters(latitude, longitude) {
       let closestHairMasters = null;
@@ -286,38 +285,31 @@ updateBookingLink(); // Set initial booking link
       return closestHairMasters;
     }
 
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radius of the earth in km
+      const dLat = deg2rad(lat2 - lat1); // deg2rad below
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c; // Distance in km
+      return d;
+    }
+
+    function deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    }
+
     function initializeMap(latitude, longitude) {
-  const map = L.map('map').setView([latitude, longitude], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 18,
-  }).addTo(map);
+      const map = L.map('map').setView([latitude, longitude], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
 
-  // Add the marker to the map with the default icon
-  L.marker([latitude, longitude]).addTo(map);
-
-  // Rest of your code...
-}
-
-
-  const hairMastersCoordinates = hairMasters[dropdown.value].coordinates;
-
-  fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248a6854fb3568e42558899aec3fad25e97&start=${longitude},${latitude}&end=${hairMastersCoordinates[1]},${hairMastersCoordinates[0]}`)
-    .then(response => response.json())
-    .then(data => {
-      const coordinates = data.features[0].geometry.coordinates;
-      const polyline = L.polyline(coordinates.map(coord => [coord[1], coord[0]]), {color: 'blue'}).addTo(map);
-      map.fitBounds(polyline.getBounds());
-
-      const directionsElement = document.getElementById('directions');
-      directionsElement.innerHTML = '<p><strong>Directions:</strong></p>';
-      data.features[0].properties.segments[0].steps.forEach(step => {
-        directionsElement.innerHTML += `<p>${step.instruction}</p>`;
-      });
-    })
-    .catch(error => console.error('Error:', error));
-}
-
+      L.marker([latitude, longitude]).addTo(map);
+    }
 
     function updateHairMastersSelection() {
       if (navigator.geolocation) {
@@ -342,7 +334,7 @@ updateBookingLink(); // Set initial booking link
       } else {
         console.error('Geolocation is not supported');
       }
-}    
+    }
 
     dropdown.addEventListener('change', () => {
       const selectedHairMasters = dropdown.value;
@@ -357,33 +349,6 @@ updateBookingLink(); // Set initial booking link
         initializeMap(coordinates[0], coordinates[1]);
       }
     });
-
-    function startImageCycle() {
-    images[currentIndex].classList.add('active');
-    scrollInterval = setInterval(cycleImages, 2000);
-  }
-
-  function stopImageCycle() {
-    images[currentIndex].classList.remove('active');
-    clearInterval(scrollInterval);
-  }
-
-  function cycleImages() {
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % totalImages;
-    images[currentIndex].classList.add('active');
-    const containerWidth = bottomScroll.offsetWidth;
-    const imageWidth = images[currentIndex].offsetWidth;
-    const imagesPerContainer = Math.floor(containerWidth / imageWidth);
-    const scrollPosition = currentIndex * imageWidth * imagesPerContainer;
-    bottomScroll.scrollLeft = scrollPosition;
-  }
-
-  startImageCycle();
-
-  // Add event listener to trigger image scrolling
-  bottomScroll.addEventListener('mouseover', stopImageCycle);
-  bottomScroll.addEventListener('mouseout', startImageCycle);
-</script>
+  </script>
 </body>
 </html>
