@@ -66,37 +66,32 @@
       border-radius: 4px;
     }
 
-    select:focus {
-      outline: none;
-      border-color: dodgerblue;
-    }
+.carousel-container {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+}
 
-    .carousel-container {
-      position: relative;
-      height: 100px;
-      overflow: hidden;
-      margin-top: 20x;
-    }
+.carousel-slide {
+  display: flex;
+  animation: carouselAnimation 30s linear infinite;
+}
 
-    .carousel-slide {
-      display: flex;
-      animation: carouselAnimation 30s linear infinite;
-    }
+.carousel-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
 
-    .carousel-image {
-      width: 100px;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes carouselAnimation {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
+@keyframes carouselAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
     .scrollable-section {
       overflow-y: auto;
