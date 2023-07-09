@@ -1,73 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Hair Masters Hub</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <meta name="description" content="Hair Masters Hub is a hair salon with multiple locations. Select your location to book an appointment.">
   <style>
-	 hr {
-      border: none; /* Remove the default border */
-      height: 2px; /* Set the thickness of the line */
-      background-color: #333; /* Set the color of the line */
+    #map {
+      width: 100%;
+      height: 200px;
+      z-index: 1000;
     }
-    body {
+
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to bottom, blue, red, white);
+    }
+    h1 {
+      color: #fff;
+      background-color: dodgerblue;
+      padding: 20px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      width: 100%;
+    }
+
+    .grid-item {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow-y: scroll;
+      height: 200px;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #333;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: dodgerblue;
+    }
+
+    .carousel-container {
       position: relative;
+      height: 100px;
+      overflow: hidden;
+      margin-top: 20x;
     }
-    img.logo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 20%;
+
+    .carousel-slide {
+      display: flex;
+      animation: carouselAnimation 30s linear infinite;
     }
-    @media (min-width: 768px) {
-      img.logo {
-        width: 10%;
+
+    .carousel-image {
+      width: 100px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes carouselAnimation {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
       }
     }
-    .btn-responsive {
-      margin: 5px 0;
+
+    .scrollable-section {
+      overflow-y: auto;
+      max-height: calc(100vh - 320px);
     }
-    @media (min-width: 576px) {
-      .btn-responsive {
-        margin-right: 5px;
-        margin-bottom: 5px;
-      }
+
+    .middle-column {
+      align-self: flex-start;
+    }
+
+    .bottom-scroll {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      padding: 10px 0;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .bottom-scroll img {
+      width: 15%;
+      margin-right: 2%;
+      transition: transform 0.1s;
+    }
+
+    .bottom-scroll img:last-child {
+      margin-right: 0;
+    }
+
+    .bottom-scroll img.active {
+      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
-	
-<img class="logo" src="./images/HairMasterLogo.png" alt="Hairmasters Logo">
-	
+  <h1>Hair Masters Hub</h1>
+
   <div class="container">
-    <h1>Hair Masters Hub</h1>
-    <p>Select your location to book an appointment:</p>
- 
-    <div id="booking-links">
-      <!-- Booking links will be added here by JavaScript -->
-      <button id="hm1-btn" class="btn btn-primary btn-responsive" onclick="window.open('https://hairmasters1.mysalononline.com/Booking/?sid=0&guid=b8fc744f-78f2-4ebc-a63e-4e16c5e85fbb', '_blank')">Hair Masters 1</button>
-      <button id="hm2-btn" class="btn btn-primary btn-responsive" onclick="window.open('https://hairmasters2.mysalononline.com/Booking/?sid=0&guid=1c566554-caec-4178-87ee-951a94c81608', '_blank')">Hair Masters 2</button>
-      <button id="hm3-btn" class="btn btn-primary btn-responsive" onclick="window.open('https://hairmasters3.mysalononline.com/Booking/?sid=0&guid=10220c47-f30e-4073-b317-c5c398498326', '_blank')">Hair Masters 3</button>
-      <button id="hm4-btn" class="btn btn-primary btn-responsive" onclick="window.open('https://hairmasters4.mysalononline.com/Booking/?sid=0&guid=b4d419c8-d07e-4b5f-b51b-d9b21a8f5772', '_blank')">Hair Masters 4</button>
-      <button id="hm5-btn" class="btn btn-primary btn-responsive" onclick="window.open('https://hairmasters5.mysalononline.com/Booking/?sid=0&guid=13988f04-2ad5-480f-ad7b-d271d38eb598', '_blank')">Hair Masters 5</button>
-      <hr>
-	      <h2>Follow us:</h2>
-      <div class="social-links">
-        <button class="btn btn-primary social-btn" onclick="window.open('https://www.facebook.com/people/Hairmasters/100064024783942/', '_blank')">Facebook</button>
-        <button class="btn btn-primary social-btn" onclick="window.open('https://www.instagram.com/hairmastersfinsta/', '_blank')">Instagram</button>
-        <button class="btn btn-primary social-btn" onclick="window.open('https://twitter.com/HairMasters123', '_blank')">Twitter</button>
+    <div class="grid">
+      <div class="grid-item" id="left-column">
+        <h2>CONTACT US:</h2>
+        <ul>
+          <li><a href="mailto:example@gmail.com">Gmail</a></li>
+          <li><a href="https://twitter.com/example">Twitter</a></li>
+          <li><a href="https://facebook.com/example">Facebook</a></li>
+          <li><a href="https://www.yelp.com">Yelp</a></li>
+          <li><a href="https://instagram.com/example">Instagram</a></li>
+          <li><a href="tel:+1234567890">Phone: +1234567890</a></li>
+        </ul>
+      </div>
+      <div class="grid-item middle-column">
+  <h2>Select Hair Masters:</h2>
+  <select id="dropdown">
+    <option value="hairmasters1">Hair Masters 1</option>
+    <option value="hairmasters2">Hair Masters 2</option>
+    <option value="hairmasters3">Hair Masters 3</option>
+    <option value="hairmasters4">Hair Masters 4</option>
+    <option value="hairmasters5">Hair Masters 5</option>
+  </select>
+
+  <!-- Add a new heading -->
+  <h3>Your Selected Hair Masters:</h3>
+
+  <!-- Add target="_blank" to open link in a new tab -->
+  <a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Link will appear here</a>
+
+  <script>
+    // Function to navigate to the selected link
+    // Function to navigate to the selected link
+function navigateToLink() {
+  var dropdownElement = document.getElementById("dropdown");
+  var value = dropdownElement.value; // get the value of the selected option
+
+  if (value) {
+    // Here you can define the actual URLs for each value
+    var link;
+    switch(value) {
+      case 'hairmasters1':
+        link = 'https://www.example1.com'; // Replace with actual URL
+        break;
+      case 'hairmasters2':
+        link = 'https://www.example2.com'; // Replace with actual URL
+        break;
+      case 'hairmasters3':
+        link = 'https://www.example3.com'; // Replace with actual URL
+        break;
+      case 'hairmasters4':
+        link = 'https://www.example4.com'; // Replace with actual URL
+        break;
+      case 'hairmasters5':
+        link = 'https://www.example5.com'; // Replace with actual URL
+        break;
+      default:
+        link = ''; // Default link or error handling
+    }
+
+    if (link) {
+      // Update the hyperlink element with the new URL
+      var dropdownLink = document.getElementById("dropdownLink");
+      dropdownLink.href = link;
+      dropdownLink.textContent = link;
+    }
+  }
+}
+
+// Get the dropdown element
+var dropdown = document.getElementById("dropdown");
+
+// Call navigateToLink() when the selection changes
+dropdown.onchange = navigateToLink;
+
+// Call navigateToLink() on page load to set the initial URL
+navigateToLink();
+
+  </script>
 
 
- 	  <hr>
-<h2>Contact us:</h2>
-      <div class="Contacts links">
-        <button class="btn btn-primary social-btn" onclick="window.open('tel:9567220415')">Phone Number for customer service: (956) 722-0415</button>
-		<button class="btn btn-primary social-btn" onclick="window.open('mailto:Hairmasters@stx.rr.com', '_blank')">E-mail</button>
+
+      </div>
+      <div class="grid-item" id="right-column">
+        <div id="map" style="width: 100%; height: 200px;"></div>
+        <div id="directions"></div>
       </div>
     </div>
-  </body>
+
+    <div class="scrollable-section">
+      <div class="bottom-scroll">
+        <img src="C:\Users\luise\HairMasters\HairMasters.jpg" alt="Image 1">
+        <img src="C:\Users\luise\HairMasters\HairMasters2.jpg" alt="Image 2">
+        <img src="C:\Users\luise\HairMasters\HairMasters3.jpg" alt="Image 3">
+        <img src="C:\Users\luise\HairMasters\HairMasters4.jpg" alt="Image 4">
+        <img src="C:\Users\luise\HairMasters\HairMasters5.jpg" alt="Image 5">
+        <img src="C:\Users\luise\HairMasters\HairMasters6.jpg" alt="Image 6">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/openrouteservice-js@2.3.2"></script>
+  <script>
+    const dropdownElement = document.getElementById('dropdown');
+    const leftColumn = document.getElementById('left-column');
+    const rightColumn = document.getElementById('right-column');
+    const bottomScroll = document.querySelector('.bottom-scroll');
+    const images = Array.from(bottomScroll.getElementsByTagName('img'));
+    const totalImages = images.length;
+    let currentIndex = 0;
+    let scrollInterval;
+
+    const hairMasters = {
+      hairmasters1: {
+        address: '3600 Springfield Avenue, Laredo, Texas 78040, United States',
+        coordinates: [27.530373, -99.483599], // Latitude and longitude of Hair Masters 1
+      },
+      hairmasters2: {
+        address: '302 West Hillside Road, Laredo, Texas 78041, United States',
+        coordinates: [27.510321, -99.503007], // Latitude and longitude of Hair Masters 2
+      },
+      hairmasters3: {
+        address: '5702 Mcpherson Road, Laredo, Texas 78041, United States',
+        coordinates: [27.543576, -99.480051], // Latitude and longitude of Hair Masters 3
+      },
+      hairmasters4: {
+        address: '101 West Del Mar Boulevard, Laredo, Texas 78041, United States',
+        coordinates: [27.506752, -99.487491], // Latitude and longitude of Hair Masters 4
+      },
+      hairmasters5: {
+        address: '401 Shiloh Drive, Laredo, Texas 78045, United States',
+        coordinates: [27.558532, -99.502714], // Latitude and longitude of Hair Masters 5
+      },
+    };
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371; // Radius of the earth in km
+      const dLat = deg2rad(lat2 - lat1); // deg2rad below
+      const dLon = deg2rad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c; // Distance in km
+      return d;
+    }
+
+    function deg2rad(deg) {
+      return deg * (Math.PI / 180);
+    }
+
+    function getClosestHairMasters(latitude, longitude) {
+      let closestHairMasters = null;
+      let closestDistance = Infinity;
+
+      for (const key in hairMasters) {
+        const hairMastersData = hairMasters[key];
+        const hairMastersCoordinates = hairMastersData.coordinates;
+        const hairMastersLatitude = hairMastersCoordinates[0];
+        const hairMastersLongitude = hairMastersCoordinates[1];
+        const distance = calculateDistance(latitude, longitude, hairMastersLatitude, hairMastersLongitude);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestHairMasters = key;
+        }
+      }
+
+      return closestHairMasters;
+    }
+
+    function initializeMap(latitude, longitude) {
+  const map = L.map('map').setView([latitude, longitude], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+  }).addTo(map);
+
+  // Add the marker to the map with the default icon
+  L.marker([latitude, longitude]).addTo(map);
+
+  // Rest of your code...
+}
+
+
+  const hairMastersCoordinates = hairMasters[dropdown.value].coordinates;
+
+  fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248a6854fb3568e42558899aec3fad25e97&start=${longitude},${latitude}&end=${hairMastersCoordinates[1]},${hairMastersCoordinates[0]}`)
+    .then(response => response.json())
+    .then(data => {
+      const coordinates = data.features[0].geometry.coordinates;
+      const polyline = L.polyline(coordinates.map(coord => [coord[1], coord[0]]), {color: 'blue'}).addTo(map);
+      map.fitBounds(polyline.getBounds());
+
+      const directionsElement = document.getElementById('directions');
+      directionsElement.innerHTML = '<p><strong>Directions:</strong></p>';
+      data.features[0].properties.segments[0].steps.forEach(step => {
+        directionsElement.innerHTML += `<p>${step.instruction}</p>`;
+      });
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+    function updateHairMastersSelection() {
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+          position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const closestHairMasters = getClosestHairMasters(latitude, longitude);
+            dropdown.value = closestHairMasters;
+            const hairMastersData = hairMasters[closestHairMasters];
+            const address = hairMastersData.address;
+            const coordinates = hairMastersData.coordinates;
+
+            leftColumn.innerHTML = `<h2>CONTACT US:</h2><ul><li><a href="mailto:example@gmail.com">Gmail</a></li><li><a href="https://twitter.com/example">Twitter</a></li><li><a href="https://facebook.com/example">Facebook</a></li><li><a href="https://www.yelp.com">Yelp</a></li><li><a href="https://instagram.com/example">Instagram</a></li><li><a href="tel:+1234567890">Phone: +1234567890</a></li></ul>`;
+            rightColumn.innerHTML = '<div id="map" style="width: 100%; height: 200px;"></div><div id="directions"></div>';
+            initializeMap(coordinates[0], coordinates[1]);
+          },
+          error => {
+            console.error('Error getting geolocation:', error);
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported');
+      }
+}    
+
+    dropdown.addEventListener('change', () => {
+      const selectedHairMasters = dropdown.value;
+      const hairMastersData = hairMasters[selectedHairMasters];
+
+      if (hairMastersData) {
+        const address = hairMastersData.address;
+        const coordinates = hairMastersData.coordinates;
+
+        leftColumn.innerHTML = `<h2>CONTACT US:</h2><ul><li><a href="mailto:example@gmail.com">Gmail</a></li><li><a href="https://twitter.com/example">Twitter</a></li><li><a href="https://facebook.com/example">Facebook</a></li><li><a href="https://www.yelp.com">Yelp</a></li><li><a href="https://instagram.com/example">Instagram</a></li><li><a href="tel:+1234567890">Phone: +1234567890</a></li></ul>`;
+        rightColumn.innerHTML = '<div id="map" style="width: 100%; height: 200px;"></div><div id="directions"></div>';
+        initializeMap(coordinates[0], coordinates[1]);
+      }
+    });
+
+    function startImageCycle() {
+      images[currentIndex].classList.add('active');
+      scrollInterval = setInterval(cycleImages, 2000);
+    }
+
+    function stopImageCycle() {
+      images[currentIndex].classList.remove('active');
+      clearInterval(scrollInterval);
+    }
+
+    function cycleImages() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % totalImages;
+      images[currentIndex].classList.add('active');
+      const containerWidth = bottomScroll.offsetWidth;
+      const imageWidth = images[currentIndex].offsetWidth;
+      const imagesPerContainer = Math.floor(containerWidth / imageWidth);
+      const scrollPosition = currentIndex * imageWidth * imagesPerContainer;
+      bottomScroll.scrollLeft = scrollPosition;
+    }
+
+    startImageCycle();
+    updateHairMastersSelection();
+  </script>
+</body>
 </html>
