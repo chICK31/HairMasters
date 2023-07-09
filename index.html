@@ -10,7 +10,7 @@
     }
 
     body {
-      height: 100vh;
+      height: 100%;
       margin: 0;
       background: linear-gradient(to bottom, blue, red, white);
     }
@@ -29,6 +29,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+       min-height: 100%; /* Set a minimum height to ensure vertical scrolling */
     }
 
     .grid {
@@ -45,6 +46,9 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       overflow-y: scroll;
       height: auto; /* Allow grid items to expand vertically */
+    }
+    .grid-item h2 {
+      margin-top: 0; /* Remove top margin for consistency */
     }
 
     select {
@@ -113,7 +117,7 @@
     }
 
     .bottom-scroll img {
-      width: 15%;
+      width: 40%;
       margin-right: 2%;
       transition: transform 0.1s;
     }
@@ -127,6 +131,8 @@
     }
   </style>
 </head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <body>
   <h1>Hair Masters Hub</h1>
 
