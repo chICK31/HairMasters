@@ -71,72 +71,7 @@
       border-color: dodgerblue;
     }
 
-    .carousel-container {
-      position: relative;
-      height: 100px;
-      overflow: hidden;
-      margin-top: 20x;
-    }
-
-    .carousel-slide {
-      display: flex;
-      animation: carouselAnimation 30s linear infinite;
-    }
-
-    .carousel-image {
-      width: 100px;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes carouselAnimation {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    .scrollable-section {
-      overflow-y: auto;
-      max-height: calc(100vh - 320px);
-    }
-
-    .middle-column {
-      align-self: flex-start;
-    }
-
-   .bottom-scroll {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    padding: 10px 0;
-    margin-top: 20px;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .bottom-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  .bottom-scroll img {
-    width: 15%;
-    margin-right: 2%;
-    transition: transform 0.1s;
-  }
-
-  .bottom-scroll img:last-child {
-    margin-right: 0;
-  }
-
-  .bottom-scroll img.active {
-    transform: scale(1.2);
-  }
 </style>
-
 </head>
 <body>
   <h1>Hair Masters Hub</h1>
@@ -168,56 +103,49 @@
   <h3>Your Selected Hair Masters Booking Link:</h3>
 
   <!-- Add target="_blank" to open link in a new tab -->
-  <a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Link will appear here</a>
+<a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Your Selected Hair Masters Booking Link</a>
 
-  <script>
-    // Function to navigate to the selected link
-    // Function to navigate to the selected link
-function navigateToLink() {
-  var dropdownElement = document.getElementById("dropdown");
-  var value = dropdownElement.value; // get the value of the selected option
+        <script>
+const hairMasters = {
+  hairmasters1: {
+    name: "Hair Masters Springfield",
+    url: "https://hairmasters1.mysalononline.com/Booking/?sid=0&guid=b8fc744f-78f2-4ebc-a63e-4e16c5e85fbb"
+  },
+  hairmasters2: {
+    name: "Hair Masters Hillside",
+    url: "https://hairmasters2.mysalononline.com/Booking/?sid=0&guid=1c566554-caec-4178-87ee-951a94c81608"
+  },
+  hairmasters3: {
+    name: "Hair Masters McPherson",
+    url: "https://hairmasters3.mysalononline.com/Booking/?sid=0&guid=10220c47-f30e-4073-b317-c5c398498326"
+  },
+  hairmasters4: {
+    name: "Hair Masters Delmar",
+    url: "https://hairmasters4.mysalononline.com/Booking/?sid=0&guid=b4d419c8-d07e-4b5f-b51b-d9b21a8f5772"
+  },
+  hairmasters5: {
+    name: "Hair Masters Shiloh",
+    url: "https://hairmasters5.mysalononline.com/Booking/?sid=0&guid=13988f04-2ad5-480f-ad7b-d271d38eb598"
+  }
+};
 
-  if (value) {
-    // Here you can define the actual URLs for each value
-    var link;
-    switch(value) {
-      case 'hairmasters1':
-        link = 'hairmasters1.mysalononline.com'; // Replace with actual URL
-        break;
-      case 'hairmasters2':
-        link = 'hairmasters2.mysalononline.com'; // Replace with actual URL
-        break;
-      case 'hairmasters3':
-        link = 'hairmasters3.mysalononline.com'; // Replace with actual URL
-        break;
-      case 'hairmasters4':
-        link = 'hairmasters4.mysalononline.com'; // Replace with actual URL
-        break;
-      case 'hairmasters5':
-        link = 'hairmasters5.mysalononline.com'; // Replace with actual URL
-        break;
-      default:
-        link = ''; // Default link or error handling
-    }
+const dropdownElement = document.getElementById('dropdown');
+const dropdownLinkElement = document.getElementById('dropdownLink');
 
-    if (link) {
-      // Update the hyperlink element with the new URL
-      var dropdownLink = document.getElementById("dropdownLink");
-      dropdownLink.href = link;
-      dropdownLink.textContent = link;
-    }
+function updateBookingLink() {
+  const selectedHairMasters = dropdownElement.value;
+  const hairMastersData = hairMasters[selectedHairMasters];
+
+  if (hairMastersData) {
+    const bookingLink = hairMastersData.url;
+    const bookingName = hairMastersData.name;
+    dropdownLinkElement.href = bookingLink;
+    dropdownLinkElement.textContent = bookingName;
   }
 }
 
-// Get the dropdown element
-var dropdown = document.getElementById("dropdown");
-
-// Call navigateToLink() when the selection changes
-dropdown.onchange = navigateToLink;
-
-// Call navigateToLink() on page load to set the initial URL
-navigateToLink();
-
+dropdownElement.addEventListener('change', updateBookingLink);
+updateBookingLink(); // Set initial booking link
   </script>
       </div>
       <div class="grid-item" id="right-column">
