@@ -40,11 +40,11 @@
 
     .grid-item {
       background-color: #f9f9f9;
-      padding: 20px;
+      padding: 10px;
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       overflow-y: scroll;
-      height: 200px;
+      height: auto; /* Allow grid items to expand vertically */
     }
 
     select {
@@ -108,6 +108,8 @@
       padding: 10px 0;
       margin-top: 20px;
       overflow: hidden;
+      width: 100%; /* Make the images occupy the full width of the container */
+
     }
 
     .bottom-scroll img {
