@@ -107,7 +107,7 @@
       white-space: nowrap;
       padding: 10px 0;
       margin-top: 20px;
-      overflow: hidden;
+      overflow: scroll;
     }
 
     .bottom-scroll img {
@@ -221,15 +221,17 @@
     let currentIndex = 0;
     let scrollInterval;
 
-    function startImageCycle() {
-      images[currentIndex].classList.add('active');
-      scrollInterval = setInterval(cycleImages, 2000);
-    }
+function startImageCycle() {
+  images[currentIndex].classList.add('active');
+  scrollInterval = setInterval(cycleImages, 2000);
+  bottomScroll.style.scrollBehavior = 'smooth'; // Add this line
+}
 
-    function stopImageCycle() {
-      images[currentIndex].classList.remove('active');
-      clearInterval(scrollInterval);
-    }
+function stopImageCycle() {
+  images[currentIndex].classList.remove('active');
+  clearInterval(scrollInterval);
+  bottomScroll.style.scrollBehavior = ''; // Add this line
+}
 
     function cycleImages() {
       images[currentIndex].classList.remove('active');
