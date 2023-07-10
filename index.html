@@ -2,130 +2,9 @@
 <html>
 <head>
   <title>Hair Masters Hub</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      height: 100vh;
-      margin: 0;
-      background: linear-gradient(to bottom, blue, red, white);
-    }
-    h1 {
-      color: #fff;
-      background-color: dodgerblue;
-      padding: 20px;
-      text-align: center;
-      margin: 0;
-    }
-
-    .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-   .grid {
-      display: grid;
-      grid-template-columns: 100%;
-      grid-gap: 10px;
-      width: 100%;
-    }
-
-    .grid-item {
-      background-color: #f9f9f9;
-      padding: 10px;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      overflow-y: scroll;
-      height: auto;
-    }
-
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 10px 20px;
-      font-size: 16px;
-      color: #333;
-      width: 100%;
-      border-radius: 4px;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: dodgerblue;
-    }
-
-    .carousel-container {
-      position: relative;
-      height: 100px;
-      overflow: hidden;
-      margin-top: 20x;
-    }
-
-    .carousel-slide {
-      display: flex;
-      animation: carouselAnimation 30s linear infinite;
-    }
-
-    .carousel-image {
-      width: 100px;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes carouselAnimation {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    .scrollable-section {
-      overflow-y: auto;
-      max-height: calc(100vh - 320px);
-    }
-
-    .middle-column {
-      align-self: flex-start;
-    }
-
-    .bottom-scroll {
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-      padding: 10px 0;
-      margin-top: 20px;
-      overflow: hidden;
-    }
-
-    .bottom-scroll img {
-      width: 15%;
-      margin-right: 2%;
-      transition: transform 0.1s;
-    }
-
-    .bottom-scroll img:last-child {
-      margin-right: 0;
-    }
-
-    .bottom-scroll img.active {
-      transform: scale(1.2);
-    }
-  </style>
+  <link rel="stylesheet" href="Cool Effects.css">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
   <h1>Hair Masters Hub</h1>
 
@@ -155,44 +34,30 @@
         <a id="dropdownLink" href="#" target="_blank" style="color: blue; text-decoration: underline;">Hair Masters Springfield</a>
       </div>
       <div class="grid-item" id="right-column">
-        <div id="map" style="width: 100%; height: 200px;"></div>
+        <h2>Now Hiring</h2>
+	<a href="https://forms.gle/3KjnUmdFWFFJRoXs5" target="_blank" id="applyNowLink">Apply Now</a>
+        <div id="map" style="width: 100%; height: auto;"></div>
         <div id="directions"></div>
       </div>
     </div>
-<div class="scrollable-section">
-  <div class="bottom-scroll">
-    <img src="images/HairMasters.jpg" alt="Image 1">
-    <img src="images/HairMasters2.jpg" alt="Image 2">
-    <img src="images/HairMasters3.jpg" alt="Image 3">
-    <img src="images/HairMasters4.jpg" alt="Image 4">
-    <img src="images/HairMasters5.jpg" alt="Image 5">
-    <img src="images/HairMasters6.jpg" alt="Image 6">
+    <div class="scrollable-section">
+      <div class="bottom-scroll">
+        <img src="images/HairMasters.jpg" alt="Image 1">
+        <img src="images/HairMasters2.jpg" alt="Image 2">
+        <img src="images/HairMasters3.jpg" alt="Image 3">
+        <img src="images/HairMasters4.jpg" alt="Image 4">
+        <img src="images/HairMasters5.jpg" alt="Image 5">
+        <img src="images/HairMasters6.jpg" alt="Image 6">
+      </div>
+    </div>
   </div>
-</div>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/openrouteservice-js@2.3.2"></script>
   <script>
     const hairMasters = {
-      hairmasters1: {
-        name: "Hair Masters Springfield",
-        url: "https://hairmasters1.mysalononline.com/Booking/?sid=0&guid=b8fc744f-78f2-4ebc-a63e-4e16c5e85fbb"
-      },
-      hairmasters2: {
-        name: "Hair Masters Hillside",
-        url: "https://hairmasters2.mysalononline.com/Booking/?sid=0&guid=1c566554-caec-4178-87ee-951a94c81608"
-      },
-      hairmasters3: {
-        name: "Hair Masters McPherson",
-        url: "https://hairmasters3.mysalononline.com/Booking/?sid=0&guid=10220c47-f30e-4073-b317-c5c398498326"
-      },
-      hairmasters4: {
-        name: "Hair Masters Delmar",
-        url: "https://hairmasters4.mysalononline.com/Booking/?sid=0&guid=b4d419c8-d07e-4b5f-b51b-d9b21a8f5772"
-      },
-      hairmasters5: {
-        name: "Hair MastersShiloh",
-        url: "https://hairmasters5.mysalononline.com/Booking/?sid=0&guid=13988f04-2ad5-480f-ad7b-d271d38eb598"
-      }
+      hairmasters1: {name: "Hair Masters Springfield", url: "https://example.com/hairmasters1"},
+      hairmasters2: {name: "Hair Masters Hillside", url: "https://example.com/hairmasters2"},
+      hairmasters3: {name: "Hair Masters McPherson", url: "https://example.com/hairmasters3"},
+      hairmasters4: {name: "Hair Masters Delmar", url: "https://example.com/hairmasters4"},
+      hairmasters5: {name: "Hair Masters Shiloh", url: "https://example.com/hairmasters5"}
     };
 
     const dropdownElement = document.getElementById('dropdown');
@@ -221,17 +86,17 @@
     let currentIndex = 0;
     let scrollInterval;
 
-function startImageCycle() {
-  images[currentIndex].classList.add('active');
-  scrollInterval = setInterval(cycleImages, 2000);
-  bottomScroll.style.scrollBehavior = 'smooth'; // Add this line
-}
+    function startImageCycle() {
+      images[currentIndex].classList.add('active');
+      scrollInterval = setInterval(cycleImages, 1000);
+      bottomScroll.style.scrollBehavior = 'smooth'; // Add this line
+    }
 
-function stopImageCycle() {
-  images[currentIndex].classList.remove('active');
-  clearInterval(scrollInterval);
-  bottomScroll.style.scrollBehavior = ''; // Add this line
-}
+    function stopImageCycle() {
+      images[currentIndex].classList.remove('active');
+      clearInterval(scrollInterval);
+      bottomScroll.style.scrollBehavior = ''; // Add this line
+    }
 
     function cycleImages() {
       images[currentIndex].classList.remove('active');
@@ -249,107 +114,6 @@ function stopImageCycle() {
     bottomScroll.addEventListener('mouseover', stopImageCycle);
     bottomScroll.addEventListener('mouseout', startImageCycle);
 
-    const hairMastersCoordinates = hairMasters[dropdown.value].coordinates;
-
-    fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248a6854fb3568e42558899aec3fad25e97&start=${longitude},${latitude}&end=${hairMastersCoordinates[1]},${hairMastersCoordinates[0]}`)
-      .then(response => response.json())
-      .then(data => {
-        const coordinates = data.features[0].geometry.coordinates;
-        const polyline = L.polyline(coordinates.map(coord => [coord[1], coord[0]]), {color: 'blue'}).addTo(map);
-        map.fitBounds(polyline.getBounds());
-
-        const directionsElement = document.getElementById('directions');
-        directionsElement.innerHTML = '<p><strong>Directions:</strong></p>';
-        data.features[0].properties.segments[0].steps.forEach(step => {
-          directionsElement.innerHTML += `<p>${step.instruction}</p>`;
-        });
-      })
-      .catch(error => console.error('Error:', error));
-
-    function getClosestHairMasters(latitude, longitude) {
-      let closestHairMasters = null;
-      let closestDistance = Infinity;
-
-      for (const key in hairMasters) {
-        const hairMastersData = hairMasters[key];
-        const hairMastersCoordinates = hairMastersData.coordinates;
-        const hairMastersLatitude = hairMastersCoordinates[0];
-        const hairMastersLongitude = hairMastersCoordinates[1];
-        const distance = calculateDistance(latitude, longitude, hairMastersLatitude, hairMastersLongitude);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestHairMasters = key;
-        }
-      }
-
-      return closestHairMasters;
-    }
-
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // Radius of the earth in km
-      const dLat = deg2rad(lat2 - lat1); // deg2rad below
-      const dLon = deg2rad(lon2 - lon1);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const d = R * c; // Distance in km
-      return d;
-    }
-
-    function deg2rad(deg) {
-      return deg * (Math.PI / 180);
-    }
-
-    function initializeMap(latitude, longitude) {
-      const map = L.map('map').setView([latitude, longitude], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
-      }).addTo(map);
-
-      L.marker([latitude, longitude]).addTo(map);
-    }
-
-    function updateHairMastersSelection() {
-      if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(
-          position => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            const closestHairMasters = getClosestHairMasters(latitude, longitude);
-            dropdown.value = closestHairMasters;
-            const hairMastersData = hairMasters[closestHairMasters];
-            const address = hairMastersData.address;
-            const coordinates = hairMastersData.coordinates;
-
-            leftColumn.innerHTML = `<h2>CONTACT US:</h2><ul><li><a href="mailto:example@gmail.com">Gmail</a></li><li><a href="https://twitter.com/example">Twitter</a></li><li><a href="https://facebook.com/example">Facebook</a></li><li><a href="https://www.yelp.com">Yelp</a></li><li><a href="https://instagram.com/example">Instagram</a></li><li><a href="tel:+1234567890">Phone: +1234567890</a></li></ul>`;
-            rightColumn.innerHTML = '<div id="map" style="width: 100%; height: 200px;"></div><div id="directions"></div>';
-            initializeMap(coordinates[0], coordinates[1]);
-          },
-          error => {
-            console.error('Error getting geolocation:', error);
-          }
-        );
-      } else {
-        console.error('Geolocation is not supported');
-      }
-    }
-
-    dropdown.addEventListener('change', () => {
-      const selectedHairMasters = dropdown.value;
-      const hairMastersData = hairMasters[selectedHairMasters];
-
-      if (hairMastersData) {
-        const address = hairMastersData.address;
-        const coordinates = hairMastersData.coordinates;
-
-        leftColumn.innerHTML = `<h2>CONTACT US:</h2><ul><li><a href="mailto:example@gmail.com">Gmail</a></li><li><a href="https://twitter.com/example">Twitter</a></li><li><a href="https://facebook.com/example">Facebook</a></li><li><a href="https://www.yelp.com">Yelp</a></li><li><a href="https://instagram.com/example">Instagram</a></li><li><a href="tel:+1234567890">Phone: +1234567890</a></li></ul>`;
-        rightColumn.innerHTML = '<div id="map" style="width: 100%; height: 200px;"></div><div id="directions"></div>';
-        initializeMap(coordinates[0], coordinates[1]);
-      }
-    });
   </script>
 </body>
 </html>
