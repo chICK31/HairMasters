@@ -15,13 +15,34 @@
       margin: 0;
       background: linear-gradient(to bottom, blue, red, white);
     }
-    h1 {
-      color: #fff;
-      background-color: dodgerblue;
-      padding: 20px;
-      text-align: center;
-      margin: 0;
-    }
+h1 {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 0.75em;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(-45deg, red, white, blue, red);
+  background-size: 600% 600%;
+  animation: Gradient 30s ease infinite;
+}
+
+@keyframes Gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+h1:before {
+  display: none;
+}
+
+h1:hover:before {
+  display: none;
+}
 
     .container {
       flex: 1;
@@ -140,4 +161,29 @@
   background-color: #FF6347;
   transform: scale(1.05);
 }
+.contactButton {
+  display: inline-block;
+  padding: 10px 15px; /* Smaller padding for smaller button size */
+  font-size: 16px; /* Adjust font size as per preference */
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #32CD32; /* Light Green */
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #228B22; /* Darker Green */
+  transform: scale(1.05);
+}
+ul.contact-list {
+  list-style-type: none; /* Remove bullet points */
+  display: flex; /* Display items horizontally */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-around; /* Distribute items evenly */
+  padding: 0; /* Remove padding */
+}
+
+
 <style>
